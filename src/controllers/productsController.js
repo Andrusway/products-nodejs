@@ -11,7 +11,7 @@ export const getProductById = async (req, res) => {
   const product = await Product.findById(productId);
 
   if (!product) {
-    throw createHttpError(404, 'Note not found');
+    throw createHttpError(404, 'Product not found');
   }
 
   res.status(200).json(product);
@@ -30,7 +30,16 @@ export const updateProduct = async (req, res) => {
     { new: true },
   );
   if (!newProduct) {
-    throw createHttpError(404, 'Note not found');
+    throw createHttpError(404, 'Product not found');
   }
   res.status(200).json(newProduct);
+};
+
+export const deleteProduct = async (req, res) => {
+  const { productId } = req.params;
+  const product = await Product.findOneAndDelete({ _id: productId });
+  if (!product) {
+    throw createHttpError(404, 'Product not found by this ID');
+  }
+  res.status(200).json(product);
 };
