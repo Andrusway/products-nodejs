@@ -13,3 +13,6 @@ export default defineConfig([
     languageOptions: { globals: globals.node },
   },
 ]);
+
+// rules: {
+//   "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], }
