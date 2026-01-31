@@ -1,6 +1,6 @@
 import { HttpError } from 'http-errors';
 
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, _next ) => {
   console.error('Error Middleware:', err);
 
   // Http Handler error.
