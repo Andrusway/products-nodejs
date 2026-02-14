@@ -16,6 +16,10 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
+  avatar: {
+    type: String,
+    required: true,
+  },
 });
 
 userSchema.methods.toJSON = function () {
@@ -23,5 +27,11 @@ userSchema.methods.toJSON = function () {
   delete obj.password;
   return obj;
 };
+
+userSchema.pre('save', function () {
+  if (!this.avatar) {
+    this.avatar = 'https://ac.goit.global/fullstack/react/default-avatar.jpg';
+  }
+});
 
 export const User = model('User', userSchema);
